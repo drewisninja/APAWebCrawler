@@ -58,12 +58,14 @@ namespace WebCrawler.BusinessLogic
                         var playerdiv = player[0].FindElements(By.TagName("div"));
 
                         PlayerModel.PlayerName = playerdiv[0].Text;
-                        PlayerModel.PlayerID = playerdiv[1].Text;
+                        PlayerModel.PlayerID = playerdiv[1].Text.Replace("#","");
                         PlayerModel.SkillLevel = player[1].Text;
                         PlayerModel.MatchsWonPlayed = player[2].Text;
                         PlayerModel.WinPercentage = player[3].Text;
                         PlayerModel.PointPerMatch = player[4].Text;
                         PlayerModel.PointsAgainst = player[5].Text;
+
+
                     }
                     catch (Exception ex) { }
 

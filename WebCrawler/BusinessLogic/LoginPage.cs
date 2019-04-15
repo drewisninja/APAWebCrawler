@@ -25,8 +25,8 @@ namespace WebCrawler.BusinessLogic
             var userPassword = _driver.FindElementById("password");
             var loginButton = _driver.FindElementByClassName("btn");
 
-            userName.SendKeys("ayirak@gmail.com");
-            userPassword.SendKeys("!Konacoffee86");
+            userName.SendKeys("<UserName>");
+            userPassword.SendKeys("<Password>");
 
             loginButton.Click();
 
