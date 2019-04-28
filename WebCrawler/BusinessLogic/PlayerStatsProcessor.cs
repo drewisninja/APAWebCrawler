@@ -21,6 +21,41 @@ namespace WebCrawler.BusinessLogic
             this._driver = driver;
         }
 
+        public void GetAllQualifiedTeamsURL()
+        {
+            _driver.Navigate().GoToUrl(this.startURL);
+            System.Threading.Thread.Sleep(1000);
+
+            var division = _driver.FindElements(By.TagName("option"));
+
+            for (int i = 0; i < division.Count; i++)
+            {
+                var divisiontemp = _driver.FindElements(By.TagName("option"));
+
+                var divisionURL = this.startURL + "/session/" + divisiontemp[i].GetAttribute("value").ToString();
+
+                _driver.Navigate().GoToUrl(divisionURL);
+                System.Threading.Thread.Sleep(1000);
+
+                var singleDivisionURL = _driver.FindElementsByClassName("css-k8wt5j");
+
+                for (int j = 0; j < singleDivisionURL.Count; j++)
+                {
+
+                    var singleDivisionURLtemp = _driver.FindElementsByClassName("css-k8wt5j");
+
+                    singleDivisionURLtemp[j].Click();
+                    System.Threading.Thread.Sleep(1000);
+
+
+                    _driver.Navigate().Back();
+                }
+
+                _driver.Navigate().Back();
+            }
+
+        }
+
         public void ProcessPlayerHighLevelStats()
         {
             _driver.Navigate().GoToUrl(this.startURL);
@@ -29,6 +64,7 @@ namespace WebCrawler.BusinessLogic
 
             var teamList = _driver.FindElementsByClassName("division-standing");
 
+            
             //var rostersBtn = driver.FindElementByXPath("//*[contains(text(), 'Rosters')]");
             //rostersBtn.Click();
 
@@ -36,6 +72,10 @@ namespace WebCrawler.BusinessLogic
             {
 
                 var newTeamList = _driver.FindElementsByClassName("division-standing");
+
+                var newTeamID = newTeamList[i].GetAttribute("to");
+
+
 
                 //Enter into team details
                 newTeamList[i].Click();
@@ -54,16 +94,21 @@ namespace WebCrawler.BusinessLogic
                         var player = singlePlayers[j].FindElements(By.TagName("td"));
 
                         Models.PlayerStats PlayerModel = new Models.PlayerStats();
+                        PlayerModel.tempPlayers = new Models.Players();
 
                         var playerdiv = player[0].FindElements(By.TagName("div"));
 
-                        PlayerModel.PlayerName = playerdiv[0].Text;
-                        PlayerModel.PlayerID = playerdiv[1].Text.Replace("#","");
-                        PlayerModel.SkillLevel = player[1].Text;
-                        PlayerModel.MatchsWonPlayed = player[2].Text;
-                        PlayerModel.WinPercentage = player[3].Text;
-                        PlayerModel.PointPerMatch = player[4].Text;
-                        PlayerModel.PointsAgainst = player[5].Text;
+                        PlayerModel.tempPlayers.PlayerName = playerdiv[0].Text;
+                        PlayerModel.tempPlayers.PlayerID = Convert.ToInt32(playerdiv[1].Text.Replace("#",""));
+                        PlayerModel.tempPlayers.TeamID = Convert.ToInt32(newTeamID.ToString().Replace("/oc/team/", ""));
+                        //PlayerModel.SkillLevel = player[1].Text;
+                        //PlayerModel.MatchsWonPlayed = player[2].Text;
+                        //PlayerModel.WinPercentage = player[3].Text;
+                        //PlayerModel.PointPerMatch = player[4].Text;
+                        //PlayerModel.PointsAgainst = player[5].Text;
+
+                        _IPlayerRepo.SavePlayerBasicInfo(PlayerModel);
+
 
 
                     }

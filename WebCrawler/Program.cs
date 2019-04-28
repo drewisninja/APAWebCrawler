@@ -19,11 +19,14 @@ namespace WebCrawler
                 LoginPage LP = new LoginPage(driver, "https://league.poolplayers.com/login");
                 LP.SignIn();
 
-                PlayerStatsProcessor processor = new PlayerStatsProcessor(driver, "https://league.poolplayers.com/oc/divisions/281050/standings");
-                processor.ProcessPlayerHighLevelStats();
+                //PlayerStatsProcessor processor = new PlayerStatsProcessor(driver, "https://league.poolplayers.com/oc/divisions/281050/standings");
+                //processor.ProcessPlayerHighLevelStats();
 
                 //PlayerStatsProcessor processor = new PlayerStatsProcessor(driver, "https://league.poolplayers.com/oc/divisions/281050/schedule/");
                 //processor.GrabAllMatchHistory();
+
+                PlayerStatsProcessor processor = new PlayerStatsProcessor(driver, "https://league.poolplayers.com/oc/divisions");
+                processor.GetAllQualifiedTeamsURL();
 
                 var pause = "";
 

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ayira\\Documents\\GitHub\\APAWebCrawler\\WebCrawler\\WebCrawler.csproj": {}
+    "C:\\Users\\ayira\\source\\repos\\WebCrawler\\WebCrawler.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ayira\\Documents\\GitHub\\APAWebCrawler\\WebCrawler\\WebCrawler.csproj": {
+    "C:\\Users\\ayira\\source\\repos\\WebCrawler\\WebCrawler.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ayira\\Documents\\GitHub\\APAWebCrawler\\WebCrawler\\WebCrawler.csproj",
+        "projectUniqueName": "C:\\Users\\ayira\\source\\repos\\WebCrawler\\WebCrawler.csproj",
         "projectName": "WebCrawler",
-        "projectPath": "C:\\Users\\ayira\\Documents\\GitHub\\APAWebCrawler\\WebCrawler\\WebCrawler.csproj",
+        "projectPath": "C:\\Users\\ayira\\source\\repos\\WebCrawler\\WebCrawler.csproj",
         "packagesPath": "C:\\Users\\ayira\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ayira\\Documents\\GitHub\\APAWebCrawler\\WebCrawler\\obj\\",
+        "outputPath": "C:\\Users\\ayira\\source\\repos\\WebCrawler\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\ProgramData\\Xamarin\\NuGet\\",
@@ -46,6 +46,10 @@
             "HtmlAgilityPack": {
               "target": "Package",
               "version": "[1.11.2, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[2.2.4, )"
             },
             "Microsoft.NETCore.App": {
               "suppressParent": "All",

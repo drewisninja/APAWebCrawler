@@ -11,5 +11,6 @@ namespace WebCrawler.Interfaces
 
         void SaveMatchStats(Models.MatchStatsPerPlayer MatchStats);
 
+        void SavePlayerBasicInfo(Models.PlayerStats PlayerModel);
     }
 }

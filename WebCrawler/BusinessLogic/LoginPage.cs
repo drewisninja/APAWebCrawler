@@ -1,7 +1,10 @@
-﻿using OpenQA.Selenium.Chrome;
+﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 
 namespace WebCrawler.BusinessLogic
 {
@@ -21,12 +24,18 @@ namespace WebCrawler.BusinessLogic
             //Login Page
             _driver.Navigate().GoToUrl(this.startURL);
 
+            for (var i = 0; i < 10; i++)
+            {
+                if (_driver.FindElement(By.Id("username")) != null) break;
+                Thread.Sleep(1000);
+            }
+
             var userName = _driver.FindElementById("username");
             var userPassword = _driver.FindElementById("password");
             var loginButton = _driver.FindElementByClassName("btn");
 
-            userName.SendKeys("<UserName>");
-            userPassword.SendKeys("<Password>");
+            userName.SendKeys("");
+            userPassword.SendKeys("");
 
             loginButton.Click();
 
